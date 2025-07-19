@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { JWT_SECRET } from "@repo/backend-common/config";
 import jwt from 'jsonwebtoken'
 
 export function middleware(req: Request, res: Response, next: NextFunction) {
@@ -8,10 +9,10 @@ export function middleware(req: Request, res: Response, next: NextFunction) {
       message: "missing token"
     })
   }
-  const decode: any = jwt.verify(token, process.env.JWT_SECRET!)
+  const decode: any = jwt.verify(token, JWT_SECRET)
 
   if (decode) {
-    //@ts-ignore
+    //@ts-ignore  1.17)
     req.userId = decode.userId;
     next();
   } else {

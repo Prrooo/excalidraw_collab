@@ -1,0 +1,2 @@
+add common folder in the packages and define zod schema 
+add db folder and init prisma and define db schema 
