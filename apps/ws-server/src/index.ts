@@ -9,17 +9,20 @@ wss.on("connection", (socket, req) => {
   const query = new URLSearchParams(url.split('?')[1]);
   const token = query.get("token") ?? "";
 
-  const decode: JwtPayload | string = jwt.verify(token, JWT_SECRET)
+  console.log(token, " ", JWT_SECRET);
 
-  if (typeof decode == "string") {
-    socket.close();
-    return;
-  }
+  // const decode: JwtPayload | string = jwt.verify(token, JWT_SECRET)
 
-  if (!decode || !decode.userId) {
-    socket.close();
-    return;
-  }
+
+  // if (typeof decode == "string") {
+  //   socket.close();
+  //   return;
+  // }
+  //
+  // if (!decode || !decode.userId) {
+  //   socket.close();
+  //   return;
+  // }
 
   socket.on("message", (mess) => {
     const message = mess.toString();
